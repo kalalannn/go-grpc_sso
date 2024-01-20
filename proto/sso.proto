@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package sso;
+
+option go_package = "./internal/sso;sso";
+
+service SSOService {
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+
+    rpc Auth (AuthRequest) returns (AuthResponse);
+
+    rpc ValidateAccessToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+    rpc ValidateRefreshToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+
+    rpc RefreshTokens (RefreshTokensRequest) returns (RefreshTokensResponse);
+}
+
+message RegisterRequest {
+    string email    = 1;          // Valid email
+    string username = 2;          // Username
+    string password = 3;          // Password
+}
+
+message RegisterResponse {
+    string user_id = 1;           // UserID
+}
+
+message AuthRequest {
+    oneof auth_field {
+        string username = 1;      // Username
+        string email = 2;         // Email
+    }
+    string password = 3;          // Password
+}
+
+message AuthResponse {
+    string access_token = 1;      // JWT token
+    string refresh_token = 2;     // Refresh token
+}
+
+message ValidateTokenRequest {
+    string token = 1;             // token
+}
+
+message ValidateTokenResponse {
+    bool valid = 1;               // if valid
+    string token_type = 2;        // return token_type if valid
+    string expires_at = 3;        // return expires_at if valid
+    string user_id = 4;           // return user_id    if valid
+    string username = 5;          // return username   if valid
+}
+
+message RefreshTokensRequest {
+    string refresh_token = 1;     // Refresh token
+}
+
+message RefreshTokensResponse {
+    string access_token = 1;      // New access token
+    string refresh_token = 2;     // New refresh token
+}
