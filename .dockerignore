@@ -1,0 +1,8 @@
+.*ignore
+*.md
+Dockerfile*
+Makefile
+.vscode/
+bin/
+proto/
+data/

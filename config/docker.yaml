@@ -1,0 +1,10 @@
+server:
+  port: 5051
+
+database:
+  connection_string: "/data/app.db"
+
+jwt:
+  secret_key: "superSECRETkey"
+  access_token_expiry: 3600   # 1h
+  refresh_token_expiry: 86400 # 24h
