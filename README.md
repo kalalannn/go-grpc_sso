@@ -83,9 +83,10 @@ The service defines the following methods:
 
 ## Quick Start
 
-(Instructions for setup and running will be added later)
+```
+make run_app_image
+```
 
-<!-- ## Next Steps -->
-<!-- *   Add setup and running instructions.
-*   Expand functionality.
-*   Include usage examples. -->
+## Future plans
+* Replace SQLite with Dockerized postgres
+* Integration tests
